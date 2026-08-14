@@ -1,6 +1,6 @@
 import ImageKit, { toFile} from "@imagekit/nodejs"
 
-const ImageKit = new ImageKit({ prpivateKey: process.env.IMAGEKIT_PRIVATE_KEY })
+const imagekit = new ImageKit({ privateKey: process.env.IMAGEKIT_PRIVATE_KEY })
 
 function hasImageKitConfig(){
     return Boolean(process.env.IMAGEKIT_PRIVATE_KEY)
@@ -22,4 +22,4 @@ async function uploadChatMedia(file){
     return result.url
 }
 
-export { uploadChatMeida, hasImageKitConfig } 
+export { uploadChatMedia, hasImageKitConfig }
