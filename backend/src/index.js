@@ -14,8 +14,6 @@ import job from "./lib/cron.js";
 
 import clerkWebhook from "./webhooks/clerk.webhook.js";
 import authRoutes from "./routes/auth.route.js";
-import messageRoutes from "./routes/message.route.js";
-import { app, server } from "./lib/socket.js";
 
 const PORT = process.env.PORT;
 const FRONTEND_URL = process.env.FRONTEND_URL;
