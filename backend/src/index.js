@@ -5,6 +5,7 @@ import "dotenv/config";
 
 import fs from "fs";
 import path from "path";
+import http from "http";
 
 import { clerkMiddleware } from "@clerk/express";
 
@@ -14,9 +15,13 @@ import job from "./lib/cron.js";
 
 import clerkWebhook from "./webhooks/clerk.webhook.js";
 import authRoutes from "./routes/auth.route.js";
+import messageRoutes from "./routes/message.route.js";
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const FRONTEND_URL = process.env.FRONTEND_URL;
+
+const app = express();
+const server = http.createServer(app);
 
 const publicDir = path.join(process.cwd(), "public");
 
@@ -39,7 +44,7 @@ app.use("/api/messages", messageRoutes);
 if (fs.existsSync(publicDir)) {
   app.use(express.static(publicDir));
 
-  app.get("/{*any}", (req, res, next) => {
+  app.get("*", (req, res, next) => {
     res.sendFile(path.join(publicDir, "index.html"), (err) => next(err));
   });
 }
