@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
 import { uploadChatMedia, hasImageKitConfig } from "../lib/imagekit.js";
+import { getReceiverSocketId } from "../lib/socket.js";
 
 export async function getUsersForSidebar(req, res){
     try{
@@ -85,7 +86,13 @@ export async function sendMessage(req, res) {
         
         const newMessage = new Message({ text, senderId, receiverId, image:imageUrl, video:videoUrl });
         await newMessage.save();
-        // todo: implement realtime with socketio
+
+        const receiverSocketId = getReceiverSocketId(receiverId);
+
+        // Emit the new message to the receiver only if they are connected
+        if(receiverSocketId){
+            io.to(receiverSocketId).emit("newMessage", newMessage);
+        }
 
         res.status(201).json(newMessage);
     }
