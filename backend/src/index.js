@@ -5,7 +5,6 @@ import "dotenv/config";
 
 import fs from "fs";
 import path from "path";
-import http from "http";
 
 import { clerkMiddleware } from "@clerk/express";
 
@@ -20,9 +19,6 @@ import {app, server} from "./lib/socket.js";
 
 const PORT = process.env.PORT || 3000;
 const FRONTEND_URL = process.env.FRONTEND_URL;
-
-
-const server = http.createServer(app);
 
 const publicDir = path.join(process.cwd(), "public");
 
