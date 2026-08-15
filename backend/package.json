@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "rm -rf dist && cp -R src dist/",
-    "dev": "node --watch src/index.js"
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "db:seed":"node src/seeds/user.seed.js",
+    "db:clear-messages":"node src/seeds/clear-messages.js"
   },
   "keywords": [],
   "author": "",

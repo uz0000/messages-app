@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   try {
-    const signingSecret = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
+    const signingSecret = process.env.CLERK_WEBHOOK_SECRET;
     if (!signingSecret) {
       res.status(503).json({ message: "Webhook secret is missing" });
       return;

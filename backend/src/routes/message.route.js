@@ -10,6 +10,6 @@ router.use(protectRoute); // Apply the protectRoute middleware to all routes in 
 router.get("/users", protectRoute, getUsersForSidebar);
 router.get("/conversations", protectRoute, getConversationsForSidebar);
 router.get("/:id", protectRoute, getMessages) 
-router.post("/send/:id", upload.single(), sendMessage);
+router.post("/send/:id", upload.single("media"), sendMessage);
 
 export default router;
