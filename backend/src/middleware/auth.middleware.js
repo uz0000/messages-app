@@ -6,7 +6,7 @@ export async function protectRoute(req, res, next){
     try {
         const {userId} =getAuth(req)
 
-        if (!userID) {
+        if (!userId) {
             res.status(401).json({error: "Unauthorized"})
             return
         }
@@ -18,7 +18,7 @@ export async function protectRoute(req, res, next){
         req.user = user
         next()  
         } catch (error) {
-            console.error("Error in protectRoute middleware:", error).meesage;
+            console.error("Error in protectRoute middleware:", error.message);
             res.status(500).json({error: "Internal server error"})
         }
     }
