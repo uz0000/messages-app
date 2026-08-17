@@ -15,7 +15,10 @@ export const useAuthStore = create((set,get) => ({
         set({ isCheckingAuth: true })
 
         try{
-            const res = await axiosInstance.get("/auth/check")
+            // Sync rather than check: Clerk has told us the session is good, so this
+            // writes the profile up front and hands it back, instead of leaving a
+            // first-time user with nothing to read.
+            const res = await axiosInstance.post("/auth/sync")
             set({authUser:res.data})
             get().connectSocket(res.data)
        } catch (error) {

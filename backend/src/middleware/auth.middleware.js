@@ -10,6 +10,8 @@ export async function protectRoute(req, res, next){
             res.status(401).json({error: "Unauthorized"})
             return
         }
+        // The profile is written by POST /api/auth/sync at sign-in, so by the time any
+        // protected route runs it is already there. Just read it.
         const user = await User.findOne({clerkId: userId})
         if (!user) {
             res.status(401).json({error: "User profile has not been synced"})
