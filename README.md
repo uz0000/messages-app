@@ -1,5 +1,7 @@
 # Messages
 
+https://messages-co5e.onrender.com/
+
 A real-time one-on-one chat app. React/Vite frontend, Express/Socket.IO backend, MongoDB for storage, Clerk for auth, and ImageKit for media attachments.
 
 ## Features
